@@ -9,7 +9,7 @@ const UPDATE_CHUNK_SIZE = 2000;
     const col = await getCollection();
     const projection = {
       votes_up: 1,
-      votes_funny: 1,
+      votes_down: 1,
       comment_count: 1,
     };
 
@@ -73,7 +73,7 @@ getBulkOperations(record) {
       filter: { _id: record._id },
       update: {
         $set: {
-          popularity: record.votes_up + record.votes_funny + record.comment_count,
+          popularity: record.votes_up + record.votes_down + record.comment_count,
         },
       },
     },
